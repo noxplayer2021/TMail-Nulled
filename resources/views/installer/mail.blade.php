@@ -6,9 +6,9 @@ Mail Details
 
 @section('addonJS')
 <script>
-$("#addDomain").click(function(){
-    $("#addDomain").before('<input type="text" name="domain[]" placeholder="Enter Domain">');
-});
+    document.getElementById('addDomain').addEventListener('click', () => {
+        document.getElementById('addDomain').outerHTML = '<input type="text" name="domain[]" placeholder="Enter Domain">' + document.getElementById('addDomain').outerHTML
+    })
 </script>
 @endsection
 

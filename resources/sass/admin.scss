@@ -270,3 +270,13 @@ header .tm-menu {
 .custom_code {
     min-height: 100px;
 }
+
+.field {
+    .half_value {
+        width: 49%;
+        display: inline;
+        &:not(:last-child) {
+            padding-right: 20px;
+        }
+    }
+}

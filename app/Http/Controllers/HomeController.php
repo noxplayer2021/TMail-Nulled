@@ -391,6 +391,30 @@ class HomeController extends Controller
     }
 
     protected function generateRandomWord() {
+        $start = env('RANDOM_GENERATE_START', 0);
+        $end = env('RANDOM_GENERATE_END', 0);
+        if($start == 0 && $end == 0) {
+            return $this->generatePronounceableWord();
+        }
+        return $this->generatedRandomBetweenLength($start, $end);
+    }
+    
+    protected function generatedRandomBetweenLength($start, $end) {
+        $length = rand($start, $end);
+        return $this->generateRandomString($length);
+    }
+
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    protected function generatePronounceableWord() {
         $c  = 'bcdfghjklmnprstvwz'; //consonants except hard to speak ones
         $v  = 'aeiou';              //vowels
         $a  = $c . $v;                //both

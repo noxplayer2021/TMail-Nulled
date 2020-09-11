@@ -78,7 +78,11 @@ class AdminController extends Controller {
         //Other Options
         $env["CC_CHECK"] = env('CC_CHECK', false);
         $env["CRON_PASSWORD"] = env('CRON_PASSWORD', '');
+        $env["ENABLE_COOKIE_POLICY"] = env('ENABLE_COOKIE_POLICY', false);
         $env["ENABLE_COMPTACT_VIEW"] = env('ENABLE_COMPTACT_VIEW', false);
+        //Randomly Generate Email IDs
+        $env["RANDOM_GENERATE_END"] = env('RANDOM_GENERATE_END', 0);
+        $env["RANDOM_GENERATE_START"] = env('RANDOM_GENERATE_START', 0);
         //Ad Spaces & Custom JS, CSS & Header
         $options = Option::get();
         foreach($options as $option) {
@@ -117,7 +121,7 @@ class AdminController extends Controller {
         ]);
         $new_array = array();
         foreach($request->all() as $key => $value) {
-            if((\strpos($key, 'AD_SPACE') !== false) || \strpos($key, 'CUSTOM') !== false) {
+            if((\strpos($key, 'AD_SPACE') !== false) || \strpos($key, 'CUSTOM') !== false || \strpos($key, 'COOKIE_POLICY_TEXT') !== false) {
                 $option = Option::where('key', $key)->first();
                 if($option) {
                     if($value) {

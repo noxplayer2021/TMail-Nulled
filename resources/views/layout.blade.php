@@ -132,7 +132,17 @@
     <main>
         @yield('content')
         <div id="snackbar"></div>
-    </main>   
+    </main>
+    @if(env('ENABLE_COOKIE_POLICY'))
+    <footer>
+        <div class="cookie_policy">
+            <div class="cookie_policy_text">
+                {!! $COOKIE_POLICY_TEXT !!}
+            </div>
+            <div class="cookie_policy_close">DISMISS</div>
+        </div>
+    </footer>
+    @endif
     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
     @yield('addonJS')
     <script src="{{ asset('js/shortcode.js') }}"></script>

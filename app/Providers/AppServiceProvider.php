@@ -34,13 +34,13 @@ class AppServiceProvider extends ServiceProvider
                     View::share($option->key, $option->value);
                 }
             } else {
-                $options = array("AD_SPACE_1", "AD_SPACE_2", "AD_SPACE_3", "CUSTOM_HEADER", "CUSTOM_CSS", "CUSTOM_JS");
+                $options = array("AD_SPACE_1", "AD_SPACE_2", "AD_SPACE_3", "CUSTOM_HEADER", "CUSTOM_CSS", "CUSTOM_JS", "COOKIE_POLICY_TEXT");
                 foreach($options as $option) {
                     View::share($option, "");
                 }
             }
         } else {
-            $options = array("AD_SPACE_1", "AD_SPACE_2", "AD_SPACE_3", "CUSTOM_HEADER", "CUSTOM_CSS", "CUSTOM_JS");
+            $options = array("AD_SPACE_1", "AD_SPACE_2", "AD_SPACE_3", "CUSTOM_HEADER", "CUSTOM_CSS", "CUSTOM_JS", "COOKIE_POLICY_TEXT");
             foreach($options as $option) {
                 View::share($option, "");
             }

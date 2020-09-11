@@ -14,7 +14,7 @@ return [
     'enter' => 'E-Mail-ID eingeben',
     'create' => 'Erstellen',
     'or' => 'oder',
-    'random' => 'Zufällig',
+    'random' => 'Zufällige',
     'cancel' => 'Stornieren',
     'goback' => 'Zurück zur MailBox',
     'copy' => 'Kopieren',

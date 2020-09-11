@@ -2,6 +2,7 @@ let notificationMsgs = localStorage.getItem('notificationMsgs') ? JSON.parse(loc
 let mailboxMsgs = localStorage.getItem('mailboxMsgs') ? JSON.parse(localStorage.getItem('mailboxMsgs')) : [];
 let ad_space_4 = "";
 let server_error = getCookie('server_error');
+let cookie_shown = localStorage.getItem('cookie_shown') ? true : false;
 
 $.ajax({
     url: "/ads/4", 
@@ -206,7 +207,7 @@ function fetch(mails, newFetch = false) {
             }
         }
 
-        value['html'] = value['html'].replace("href", "target='_blank' href");
+        value['html'] = value['html'].replaceAll("href", "target='_blank' href");
 
         var message = '<div id="content-mail-'+key+'" class="mail-content"><div class="close-mail-content"><i class="fas fa-angle-double-left"></i><span>View all mails</span></div><div class="subject">'+value['subject']+'</div><div class="row sender-time"><div class="col-md-9 sender">'+value['sender_name']+' - '+value['sender_email']+'</div><div class="col-md-3 time">'+value['time']+'</div></div><span class="mail-delete" uid="'+key+'"><i class="fas fa-trash-alt"></i></span><span class="mail-download" key="'+key+'" subject="'+value['subject'].replace(/ /g, "_")+'"><i class="fas fa-save"></i></span><div class="message">'+value['html']+'</div><div class="attachments">';
         $.each( value['attachments'], function( akey, avalue ) {
@@ -414,3 +415,13 @@ if ($.isFunction($.fn.shortcode)) {
     });
 }
 
+if(cookie_shown && document.querySelector('.cookie_policy')) {
+    document.querySelector('.cookie_policy').classList.add('hide')
+}
+
+if(document.querySelector('.cookie_policy')) {
+    document.querySelector('.cookie_policy_close').addEventListener('click', () => {
+        localStorage.setItem('cookie_shown', true)
+        document.querySelector('.cookie_policy').classList.add('hide')
+    })
+}

@@ -1,5 +1,12 @@
 # TMail-Nulled
-***Version 5.7***
+***Version 5.8***
+
+v5.8 - 12 August 2020
+- Added Cookie Policy
+- Added ability to configure the Random Email ID Generator
+- Minor Text Correction
+- Updated Vendor Files
+- Fixed Installer Issue
 
 v5.7 - 8 July 2020
 - Added Compact Layout for Actions

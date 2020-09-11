@@ -324,7 +324,7 @@ small {
                 </div>
             </div>
             <div class="form-group">
-                <label for="IMAP_ENCRYPTION" class="col-form-label">IMAP Encryption (SSL or TSL)</label>
+                <label for="IMAP_ENCRYPTION" class="col-form-label">IMAP Encryption (SSL or TLS)</label>
                 <div class="field">
                     <input id="IMAP_ENCRYPTION" type="text" class="form-control{{ $errors->has('IMAP_ENCRYPTION') ? ' is-invalid' : '' }}" name="IMAP_ENCRYPTION" value="{{ $env['IMAP_ENCRYPTION'] }}">
                     @if ($errors->has('IMAP_ENCRYPTION'))
@@ -470,6 +470,21 @@ small {
                         @endif
                     </div>
                 </div>
+                @elseif($key == "ENABLE_COOKIE_POLICY")
+                <div class="form-group">
+                    <label for="{{$key}}" class="col-form-label">Enable Cookie Policy</label>
+                    <div class="field">
+                        <select id="{{$key}}" class="form-control{{ $errors->has($key) ? ' is-invalid' : '' }}" name="{{$key}}">
+                            <option value="true" {{ $value ? 'selected' : '' }}>Yes</option>
+                            <option value="false" {{ $value ? '' : 'selected' }}>No</option>
+                        </select>
+                        @if ($errors->has($key))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first($key) }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
                 @elseif($key == "DELETE_AFTER_KEY")
                 <div class="form-group">
                     <label for="{{$key}}" class="col-form-label">Delete After</label>
@@ -479,6 +494,19 @@ small {
                             <option value="d" {{ ($value == "d") ? 'selected' : '' }}>Days</option>
                             <option value="m" {{ ($value == "m") ? 'selected' : '' }}>Months</option>
                         </select>
+                        @if ($errors->has($key))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first($key) }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                @elseif($key == "RANDOM_GENERATE_START")
+                <div class="form-group">
+                    <label for="{{$key}}" class="col-form-label">Randomly Generate Email ID with length between (Keep both value 0 if you want to use default pronounceable email ID generator)</label>
+                    <div class="field">
+                        <input id="RANDOM_GENERATE_START" type="text" class="form-control{{ $errors->has('RANDOM_GENERATE_START') ? ' is-invalid' : '' }} half_value" name="RANDOM_GENERATE_START" value="{{ $env['RANDOM_GENERATE_START'] }}">
+                        <input id="RANDOM_GENERATE_END" type="text" class="form-control{{ $errors->has('RANDOM_GENERATE_END') ? ' is-invalid' : '' }} half_value" name="RANDOM_GENERATE_END" value="{{ $env['RANDOM_GENERATE_END'] }}">
                         @if ($errors->has($key))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first($key) }}</strong>
@@ -579,6 +607,17 @@ small {
                 </div>
                 @endif
             @endforeach
+            <div class="form-group">
+                <label for="COOKIE_POLICY_TEXT" class="col-form-label">Cookie Policy Text (You can use HTML)</label>
+                <div class="field">
+                    <textarea id="COOKIE_POLICY_TEXT" type="text" class="form-control{{ $errors->has('COOKIE_POLICY_TEXT') ? ' is-invalid' : '' }} custom_code" name="COOKIE_POLICY_TEXT">{{ isset($env['COOKIE_POLICY_TEXT']) ? $env['COOKIE_POLICY_TEXT'] : '<p>By using this website you agree to our <a href="#">Cookie Policy</a></p>' }}</textarea>
+                    @if ($errors->has('COOKIE_POLICY_TEXT'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('COOKIE_POLICY_TEXT') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group row mb-0">

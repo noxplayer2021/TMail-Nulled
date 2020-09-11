@@ -94,7 +94,7 @@ class InstallController extends Controller {
 
     public function databaseRun() {
         try {
-            Artisan::call('migrate', ["--force"=> true]);
+            Artisan::call('migrate:refresh', ["--force"=> true]);
             Artisan::call('db:seed', ['--force' => true]);
             return redirect()->route('InstallMail');
         } catch(\Exception $e) {
