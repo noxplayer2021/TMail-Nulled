@@ -1,5 +1,8 @@
 # TMail-Nulled
-***Version 5.8***
+***Version 5.8.1***
+
+v5.8.1 - 2 January 2021
+- Critical Bug Fix
 
 v5.8 - 12 August 2020
 - Added Cookie Policy

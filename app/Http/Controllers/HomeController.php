@@ -214,6 +214,11 @@ class HomeController extends Controller
         $length = 0;
         foreach ($messages as $message) {
             $mail = array();
+            $receiver = $message->getTo();
+            $mail["to"] = $receiver[0]->full;
+            if($mail["to"] !== $tm_current_mail) {
+                continue;
+            }
             $date = new DateTime();
             $sender = $message->getFrom();
             $date->setTimezone(new DateTimeZone('UTC'));
@@ -261,6 +266,11 @@ class HomeController extends Controller
         if(env('CC_CHECK')) {
             foreach ($cc_messages as $cc_message) {
                 $mail = array();
+                $receiver = $cc_message->getTo();
+                $mail["to"] = $receiver[0]->full;
+                if($mail["to"] !== $tm_current_mail) {
+                    continue;
+                }
                 $date = new DateTime();
                 $sender = $cc_message->getFrom();
                 $date->setTimezone(new DateTimeZone('UTC'));

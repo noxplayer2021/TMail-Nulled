@@ -33,7 +33,7 @@ class InstallController extends Controller {
         $code = $request->input('code');
         $url = "https://envato.harshitpeer.com/tmail/verify/?code=".$code;
         $result = file_get_contents($url);
-        if ($result != $code) {
+        if ($result !== $code) {
             $new_array = array(
                 "LICENSE_KEY" => $code
             );
