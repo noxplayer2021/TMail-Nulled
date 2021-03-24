@@ -1,0 +1,22 @@
+{
+  "Get back to MailBox": "Retour à la boîte aux lettres",
+  "Enter Username": "Saisir l'identifiant",
+  "Select Domain": "Sélectionner le domaine",
+  "Create": "Créer",
+  "Random": "Aléatoire",
+  "Cancel": "Annuler",
+  "Copy": "Copier",
+  "Refresh": "Rafraîchir",
+  "New": "Nouveau",
+  "Delete": "Supprimer",
+  "Download": "Télécharger",
+  "Fetching": "Récupération",
+  "Empty Inbox": "Boîte de réception vide",
+  "Error": "Erreur",
+  "Success": "Réussite",
+  "Close": "Fermer",
+  "Email ID Copied to Clipboard": "ID de messagerie copié dans le Presse-papiers",
+  "Please enter Username": "Veuillez saisir le nom d'utilisateur",
+  "Please Select a Domain": "Veuillez sélectionner un domaine",
+  "Username not allowed": "Nom d'utilisateur non autorisé"
+}

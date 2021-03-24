@@ -2,10 +2,11 @@
 
 namespace Illuminate\Broadcasting\Broadcasters;
 
-use Pusher\Pusher;
+use Illuminate\Broadcasting\BroadcastException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\Broadcasting\BroadcastException;
+use Pusher\ApiErrorException;
+use Pusher\Pusher;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class PusherBroadcaster extends Broadcaster
@@ -42,8 +43,9 @@ class PusherBroadcaster extends Broadcaster
     {
         $channelName = $this->normalizeChannelName($request->channel_name);
 
-        if ($this->isGuardedChannel($request->channel_name) &&
-            ! $this->retrieveUser($request, $channelName)) {
+        if (empty($request->channel_name) ||
+            ($this->isGuardedChannel($request->channel_name) &&
+            ! $this->retrieveUser($request, $channelName))) {
             throw new AccessDeniedHttpException;
         }
 
@@ -102,23 +104,51 @@ class PusherBroadcaster extends Broadcaster
      * @param  string  $event
      * @param  array  $payload
      * @return void
+     *
+     * @throws \Illuminate\Broadcasting\BroadcastException
      */
     public function broadcast(array $channels, $event, array $payload = [])
     {
         $socket = Arr::pull($payload, 'socket');
 
-        $response = $this->pusher->trigger(
-            $this->formatChannels($channels), $event, $payload, $socket, true
-        );
+        if ($this->pusherServerIsVersionFiveOrGreater()) {
+            $parameters = $socket !== null ? ['socket_id' => $socket] : [];
 
-        if ((is_array($response) && $response['status'] >= 200 && $response['status'] <= 299)
-            || $response === true) {
-            return;
+            try {
+                $this->pusher->trigger(
+                    $this->formatChannels($channels), $event, $payload, $parameters
+                );
+            } catch (ApiErrorException $e) {
+                throw new BroadcastException(
+                    sprintf('Pusher error: %s.', $e->getMessage())
+                );
+            }
+        } else {
+            $response = $this->pusher->trigger(
+                $this->formatChannels($channels), $event, $payload, $socket, true
+            );
+
+            if ((is_array($response) && $response['status'] >= 200 && $response['status'] <= 299)
+                || $response === true) {
+                return;
+            }
+
+            throw new BroadcastException(
+                ! empty($response['body'])
+                    ? sprintf('Pusher error: %s.', $response['body'])
+                    : 'Failed to connect to Pusher.'
+            );
         }
+    }
 
-        throw new BroadcastException(
-            is_bool($response) ? 'Failed to connect to Pusher.' : $response['body']
-        );
+    /**
+     * Determine if the Pusher PHP server is version 5.0 or greater.
+     *
+     * @return bool
+     */
+    protected function pusherServerIsVersionFiveOrGreater()
+    {
+        return class_exists(ApiErrorException::class);
     }
 
     /**

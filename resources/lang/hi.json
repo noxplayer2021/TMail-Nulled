@@ -1,0 +1,22 @@
+{
+  "Get back to MailBox": "मेलबॉक्स पर वापस जाएं",
+  "Enter Username": "उपयोगकर्ता नाम दर्ज करें",
+  "Select Domain": "डोमेन का चयन करें",
+  "Create": "बनाएँ",
+  "Random": "रैंडम",
+  "Cancel": "रद्द करें",
+  "Copy": "नक़ल करें",
+  "Refresh": "ताज़ा करें",
+  "New": "नया",
+  "Delete": "मिटाएँ",
+  "Download": "डाउनलोड",
+  "Fetching": "ला रहा है",
+  "Empty Inbox": "खाली इनबॉक्स",
+  "Error": "त्रुटि",
+  "Success": "सफलता",
+  "Close": "बंद करें",
+  "Email ID Copied to Clipboard": "क्लिपबोर्ड पर ईमेल आईडी कॉपी की गई",
+  "Please enter Username": "कृपया उपयोगकर्ता नाम दर्ज करें",
+  "Please Select a Domain": "कृपया एक डोमेन चुनें",
+  "Username not allowed": "उपयोक्ता नाम की अनुमति नहीं है"
+}

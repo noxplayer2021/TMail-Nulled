@@ -1,0 +1,22 @@
+{
+  "Get back to MailBox": "عد إلى صندوق البريد",
+  "Enter Username": "أدخل اسم المستخدم",
+  "Select Domain": "حدد المجال",
+  "Create": "إنشاء",
+  "Random": "عشوائي",
+  "Cancel": "إلغاء",
+  "Copy": "نسخ",
+  "Refresh": "تحديث",
+  "New": "جديد",
+  "Delete": "حذف",
+  "Download": "تحميل",
+  "Fetching": "جلب",
+  "Empty Inbox": "علبة الوارد فارغة",
+  "Error": "خطأ",
+  "Success": "النجاح",
+  "Close": "إغلاق",
+  "Email ID Copied to Clipboard": "تم نسخ معرف البريد الإلكتروني إلى الحافظة",
+  "Please enter Username": "الرجاء إدخال اسم المستخدم",
+  "Please Select a Domain": "الرجاء تحديد نطاق",
+  "Username not allowed": "اسم المستخدم غير مسموح به"
+}

@@ -7,5 +7,5 @@ https://laravel.com/
 IMAP Library for Laravel (License: MIT)
 https://github.com/Webklex/laravel-imap
 
-Bootstrap by twbs (License: MIT)
-https://github.com/twbs/bootstrap
+Tailwind by twbs (License: MIT)
+https://github.com/tailwindlabs/tailwindcss

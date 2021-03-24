@@ -1,0 +1,22 @@
+{
+  "Get back to MailBox": "Quay lại Hộp thư",
+  "Enter Username": "Nhập tên người dùng",
+  "Select Domain": "Chọn tên miền",
+  "Create": "Tạo",
+  "Random": "Ngẫu nhiên",
+  "Cancel": "Hủy",
+  "Copy": "Sao chép",
+  "Refresh": "Làm mới",
+  "New": "Mới",
+  "Delete": "Xoá",
+  "Download": "Tải xuống",
+  "Fetching": "Lấy",
+  "Empty Inbox": "Hộp thư đến trống",
+  "Error": "Lỗi",
+  "Success": "Thành công",
+  "Close": "Đóng",
+  "Email ID Copied to Clipboard": "Email ID được sao chép vào bảng tạm",
+  "Please enter Username": "Vui lòng nhập tên người dùng",
+  "Please Select a Domain": "Vui lòng chọn một tên miền",
+  "Username not allowed": "Tên người dùng không được phép"
+}

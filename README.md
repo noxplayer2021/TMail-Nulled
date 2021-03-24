@@ -1,5 +1,19 @@
 # TMail-Nulled
-***Version 5.8.1***
+***Version 6.0***
+
+v6.0 - 21 March 2021
+- Revamped Codebase with Laravel 8 and Livewire
+- Updated Admin UI with Tailwind
+- Added Theme Module
+- Added ability to add SEO Tags for Pages
+- Added parent-child technique for Menu Items
+- Added parent-child technique in the Pages Module
+- Added ability to use Google Accounts for IMAP Access
+- Added advance options for IMAP Configuration
+- Added Global Footer
+- Added ability for admin to set 2FA
+- Added ability for admin logout from other Browser Sessions
+- Updated OTA Software Update Structure
 
 v5.8.1 - 2 January 2021
 - Critical Bug Fix
