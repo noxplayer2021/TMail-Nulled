@@ -8,7 +8,7 @@
     {!! $page->header !!}
     <title>{{ $page->title }} - {{ config('app.settings.name') }}</title>
     @else
-    <title>{{ config('app.settings.name') }} - {{ App\Models\TMail::getEmail() }}</title>
+    <title>{{ config('app.settings.name') }}</title>
     @endif
     {!! config('app.settings.global.header') !!}
     @if(Illuminate\Support\Facades\Storage::disk('local')->has('public/images/custom-favicon.png'))
@@ -69,10 +69,17 @@
     </div>
 
     @livewireScripts
+    @if(!isset($page))
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            Livewire.emit('fetchMessages')
+            const email = '{{ App\Models\TMail::getEmail(true) }}';
+            document.title += ` - ${email}`;
+            Livewire.emit('syncEmail', email);
+            Livewire.emit('fetchMessages');
         });
+    </script>
+    @endif
+    <script>
         document.addEventListener('stopLoader', () => {
             document.getElementById('refresh').classList.add('pause-spinner');
         });

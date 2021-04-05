@@ -59,6 +59,7 @@ class Installer extends Component {
     }
 
     public function add($type = 'domains') {
+        $this->resetErrorBag();
         array_push($this->state[$type], '');
     }
 
@@ -112,6 +113,7 @@ class Installer extends Component {
         } else if ($this->current === 2) {
             $this->validate(
                 [
+                    'state.domains.0' => 'required',
                     'state.domains.*' => 'required',
                     'state.imap.host' => 'required',
                     'state.imap.port' => 'required|numeric',
@@ -119,6 +121,7 @@ class Installer extends Component {
                     'state.imap.password' => 'required',
                 ],
                 [
+                    'state.domains.0.required' => 'Atleast one Domain is Required',
                     'state.domains.*.required' => 'Domain field is Required',
                     'state.imap.host.required' => 'Host field is Required',
                     'state.imap.port.required' => 'Port field is Required',

@@ -92,6 +92,20 @@
             <textarea x-show="cookie" class="form-input rounded-md shadow-sm mt-4 block w-full resize-y border" placeholder="Enter the Text to show for Cookie Policy (HTML allowed)" wire:model.defer="state.cookie.text"></textarea>
             <x-jet-input-error for="state.cookie" class="mt-2" />
         </div>
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="language" value="{{ __('Default Language') }}" />
+            <div class="relative">
+                <select class="form-input rounded-md shadow-sm mt-1 block w-full cursor-pointer" wire:model.defer="state.language">
+                    @foreach(config('app.locales') as $locale)
+                    <option>{{ $locale }}</option>
+                    @endforeach
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                </div>
+            </div>
+            <x-jet-input-error for="state.language" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">

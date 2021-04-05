@@ -34,6 +34,31 @@
 
             <!-- Page Content -->
             <main>
+                <div class="mt-5 -mb-5 hidden annoucements" data-id="1">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                        <div class="col-span-6">
+                            <div class="w-full py-3 px-4 overflow-hidden sm:rounded-md flex items-center border bg-indigo-50 border-indigo-500">
+                                <div class="text-indigo-500 w-10"> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                    </svg>
+                                </div>
+                                <div class="ml-4 flex-1">
+                                    <div class="text-sm text-gray-600 font-semibold">{{ __('Announcements') }}</div>
+                                    <div class="text-md">
+                                        {{ __('Do you want to get notified when we release new Themes for TMail6?') }}
+                                        <a class="font-semibold underline" href="https://bulkmailerapp.com/lists/by27894j1b073/subscribe" target="_blank" rel="noopener noreferrer">{{ __('Subscribe here') }}</a>
+                                    </div>
+                                </div>
+                                <div class="close text-indigo-500 w-5 cursor-pointer"> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {{ $slot }}
             </main>
         </div>
@@ -41,5 +66,21 @@
         @stack('modals')
 
         @livewireScripts
+
+        <script>
+            const id = localStorage.getItem('annoucements');
+            if(id) {
+                const el = document.querySelector('.annoucements');
+                if(el.dataset.id > id) {
+                    el.classList.remove('hidden')
+                }
+            } else {
+                document.querySelector('.annoucements').classList.remove('hidden')
+            }
+            document.querySelector('.annoucements .close') && document.querySelector('.annoucements .close').addEventListener('click', () => {
+                localStorage.setItem('annoucements', document.querySelector('.annoucements').dataset.id);
+                document.querySelector('.annoucements').remove();
+            })
+        </script>
     </body>
 </html>

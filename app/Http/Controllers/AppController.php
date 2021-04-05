@@ -23,10 +23,6 @@ class AppController extends Controller {
     }
 
     public function app() {
-        if (TMail::getEmail() == null) {
-            TMail::generateRandomEmail();
-            return redirect()->route('app');
-        }
         return view('themes.' . config('app.settings.theme') . '.app');
     }
 

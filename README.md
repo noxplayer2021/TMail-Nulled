@@ -1,5 +1,19 @@
 # TMail-Nulled
-***Version 6.0***
+***Version 6.2***
+
+v6.2 - 5 April 2021
+- Added HTML Block for Page Content
+- Fixed Mailbox Redirect Issue
+- Fixed Case Sensitivity for Email Username
+- Modified CRON Password for a better security
+
+v6.1 - 30 March 2021
+- Fixed Delete Issue with Emails
+- Fixed Select Domain not functional on Firefox Browser
+- Fixed Page Content not getting saved on some instances
+- Added announcements for better communication
+- Added ability to the auto-detect domain if added in the Username field
+- Added Default Language selector in Admin Panel
 
 v6.0 - 21 March 2021
 - Revamped Codebase with Laravel 8 and Livewire

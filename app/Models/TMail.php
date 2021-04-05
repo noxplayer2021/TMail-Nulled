@@ -46,9 +46,8 @@ class TMail extends Model {
                 TMail::setEmail($emails[0]);
                 Cookie::queue('emails', serialize($emails), 43800);
             } else {
-                $email = TMail::generateRandomEmail(false);
-                Cookie::queue('email', $email, 43800);
-                Cookie::queue('emails', serialize([$email]), 43800);
+                Cookie::queue('email', '', -1);
+                Cookie::queue('emails', serialize([]), -1);
             }
         }
     }
@@ -75,7 +74,7 @@ class TMail extends Model {
     }
 
     public static function createCustomEmail($username, $domain) {
-        $username = \str_replace('[^a-zA-Z0-9]', '', $username);
+        $username = \str_replace('[^a-zA-Z0-9]', '', strtolower($username));
         $forbidden_ids = config('app.settings.forbidden_ids');
         if (in_array($username, $forbidden_ids)) {
             return TMail::generateRandomEmail(true);

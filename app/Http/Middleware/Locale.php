@@ -14,7 +14,7 @@ class Locale {
      * @return mixed
      */
     public function handle(Request $request, Closure $next) {
-        app()->setLocale(session('locale', config('app.setting.language', config('app.locale', 'en'))));
+        app()->setLocale(session('locale', config('app.settings.language', config('app.locale', 'en'))));
         return $next($request);
     }
 }

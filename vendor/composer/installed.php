@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '0bdf51e47fcd4ccfe19c747ba75a2285eebd7ee2',
+    'reference' => '8e0c244d1db74fcf64548dd3a7ea2b361e408610',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -499,7 +499,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '0bdf51e47fcd4ccfe19c747ba75a2285eebd7ee2',
+      'reference' => '8e0c244d1db74fcf64548dd3a7ea2b361e408610',
     ),
     'laravel/sanctum' => 
     array (
@@ -1363,12 +1363,12 @@
     ),
     'webklex/php-imap' => 
     array (
-      'pretty_version' => '2.3.0',
-      'version' => '2.3.0.0',
+      'pretty_version' => '2.3.1',
+      'version' => '2.3.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd74fbddfafb8e2d8d296a1b0c7352c7d2b88367a',
+      'reference' => '1bd367ed0bc1a0dc31bded1664c32272ca66f5bf',
     ),
     'webmozart/assert' => 
     array (

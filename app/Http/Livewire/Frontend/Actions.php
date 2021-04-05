@@ -10,10 +10,19 @@ class Actions extends Component {
     public $in_app = false;
     public $user, $domain, $domains, $email, $emails;
 
+    protected $listeners = ['syncEmail'];
+
     public function mount() {
         $this->domains = config('app.settings.domains');
         $this->email = TMail::getEmail();
         $this->emails = TMail::getEmails();
+    }
+
+    public function syncEmail($email) {
+        $this->email = $email;
+        if (count($this->emails) == 0) {
+            $this->emails = [$email];
+        }
     }
 
     public function setDomain($domain) {
@@ -24,6 +33,7 @@ class Actions extends Component {
         if (!$this->user) {
             return $this->showAlert('error', __('Please enter Username'));
         }
+        $this->checkDomainInUsername();
         if (!$this->domain) {
             return $this->showAlert('error', __('Please Select a Domain'));
         }
@@ -41,9 +51,12 @@ class Actions extends Component {
 
     public function deleteEmail() {
         TMail::removeEmail($this->email);
+        if (count($this->emails) == 1 && config('app.settings.after_last_email_delete') == 'redirect_to_homepage') {
+            return redirect()->route('home');
+        }
         $this->email = TMail::getEmail(true);
         $this->emails = TMail::getEmails();
-        $this->redirect(route('app'));
+        return redirect()->route('app');
     }
 
     public function render() {
@@ -56,5 +69,18 @@ class Actions extends Component {
 
     private function showAlert($type, $message) {
         $this->dispatchBrowserEvent('showAlert', ['type' => $type, 'message' => $message]);
+    }
+
+    /**
+     * Check if Username already consist of Domain
+     */
+    private function checkDomainInUsername() {
+        $parts = explode('@', $this->user);
+        if (isset($parts[1])) {
+            if (in_array($parts[1], $this->domains)) {
+                $this->domain = $parts[1];
+            }
+            $this->user = $parts[0];
+        }
     }
 }

@@ -16,7 +16,8 @@ class Configuration extends Component {
         'forbidden_ids' => [],
         'cron_password' => '',
         'delete' => [],
-        'random' => []
+        'random' => [],
+        'after_last_email_delete' => 'redirect_to_homepage'
     ];
 
     public function mount() {
@@ -31,6 +32,7 @@ class Configuration extends Component {
     }
 
     public function add($type = 'domains') {
+        $this->resetErrorBag();
         array_push($this->state[$type], '');
     }
 
@@ -41,6 +43,7 @@ class Configuration extends Component {
     public function update() {
         $this->validate(
             [
+                'state.domains.0' => 'required',
                 'state.domains.*' => 'required',
                 'state.forbidden_ids.*' => 'required',
                 'state.fetch_seconds' => 'required|numeric',
@@ -49,6 +52,7 @@ class Configuration extends Component {
                 'state.random.end' => 'gte:' . $this->state['random']['start']
             ],
             [
+                'state.domains.0.required' => 'Atleast one Domain is Required',
                 'state.domains.*.required' => 'Domain field is Required',
                 'state.forbidden_ids.*.required' => 'Forbidden ID field is Required',
                 'state.fetch_seconds.required' => 'Fetch Seconds field is Required',
@@ -63,7 +67,7 @@ class Configuration extends Component {
             $this->state['random']['start'] = 0;
             $this->state['random']['end'] = 0;
         }
-        $settings = Setting::whereIn('key', ['domains', 'fetch_seconds', 'forbidden_ids', 'cron_password', 'delete', 'random'])->get();
+        $settings = Setting::whereIn('key', ['domains', 'fetch_seconds', 'forbidden_ids', 'cron_password', 'delete', 'random', 'after_last_email_delete'])->get();
         foreach ($settings as $setting) {
             $setting->value = serialize($this->state[$setting->key]);
             $setting->save();

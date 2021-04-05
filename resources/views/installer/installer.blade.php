@@ -94,6 +94,9 @@
             </div> 
             <x-jet-input-error for="state.domains.{{ $key }}" class="mt-1 mb-2" />
             @endforeach
+            @if(count($state['domains']) == 0)
+            <x-jet-input-error for="state.domains.0" class="mt-1 mb-2" />
+            @endif
             <button type="button" wire:click="add('domains')" class="mt-2 px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Add</button>
         </div>
         <h3 class="col-span-6 text-xl pt-2">{{ __('IMAP Details') }}</h3>

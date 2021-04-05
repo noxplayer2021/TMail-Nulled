@@ -176,6 +176,11 @@
           });
         return `<div id='blogs'><div class="grid grid-cols-6 gap-6"><div class="col-span-6 bg-gray-100 rounded-md px-5 py-4 text-center"><i class="fas fa-sync-alt fa-spin"></i></div></div></div>`;
       },
+      html: function() {
+        let txt = document.createElement('textarea');
+        txt.innerHTML = this.contents;
+        return txt.value;
+      },
     });
   }
 })();

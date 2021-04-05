@@ -75,7 +75,7 @@ Content-Type: text/html
                 <div class="flex mt-5">
                     <a class="download text-xs font-semibold bg-blue-700 py-1 px-3 rounded-md text-white" href="#" data-id="{{ $message['id'] }}">{{ __('Download') }}</a>
                     <span class="mr-2"></span>
-                    <button x-on:click="id = 0" wire:click="delete({{ $message['id'] }})" class="text-xs font-semibold bg-red-700 py-1 px-3 rounded-md text-white">{{ __('Delete') }}</button>
+                    <button x-on:click="id = 0; document.querySelector(`[data-id='{{ $message['id'] }}']`).remove()" wire:click="delete({{ $message['id'] }})" class="text-xs font-semibold bg-red-700 py-1 px-3 rounded-md text-white">{{ __('Delete') }}</button>
                 </div>
             </div>
             <iframe class="w-full flex flex-grow min-h-tm-iframe lg:min-h-0 px-5" srcdoc="{{ $message['content'] }}" frameborder="0"></iframe>

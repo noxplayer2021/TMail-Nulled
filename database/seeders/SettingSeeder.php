@@ -14,7 +14,7 @@ class SettingSeeder extends Seeder {
     public function run() {
         $settings = new \stdClass;
         $settings->name = 'TMail';
-        $settings->version = '6.0';
+        $settings->version = '6.2';
         $settings->license_key = '';
         $settings->api_keys = [];
         $settings->domains = [];
@@ -49,7 +49,7 @@ class SettingSeeder extends Seeder {
             'admin',
             'catch'
         ];
-        $settings->cron_password = 'ABC';
+        $settings->cron_password = str_shuffle('6789abcdefghijklmnopqrstuvwxy');
         $settings->delete = [
             'value' => 1,
             'key' => 'd'
@@ -66,8 +66,9 @@ class SettingSeeder extends Seeder {
         ];
         $settings->cookie = [
             'enable' => true,
-            'text' => '<p>By using this website you agree to our <a href="https://tmail.thehp.in/faq" target="_blank">Cookie Policy</a></p>'
+            'text' => '<p>By using this website you agree to our <a href="#" target="_blank">Cookie Policy</a></p>'
         ];
+        $settings->after_last_email_delete = 'redirect_to_homepage';
 
         foreach ($settings as $key => $value) {
             if (!Setting::where('key', $key)->exists()) {

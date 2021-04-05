@@ -22,6 +22,9 @@
             </div> 
             <x-jet-input-error for="state.domains.{{ $key }}" class="mt-1 mb-2" />
             @endforeach
+            @if(count($state['domains']) == 0)
+            <x-jet-input-error for="state.domains.0" class="mt-1 mb-2" />
+            @endif
             <button type="button" wire:click="add('domains')" class="mt-2 px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Add</button>
         </div>
         <div x-data="{ show: false }" class="col-span-6 sm:col-span-4">
@@ -62,6 +65,19 @@
             <x-jet-input-error for="state.forbidden_ids.{{ $key }}" class="mt-1 mb-2" />
             @endforeach
             <button type="button" wire:click="add('forbidden_ids')" class="mt-2 px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Add</button>
+        </div>
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="after_last_email_delete" value="{{ __('Action after last Email ID is Deleted by User') }}" />
+            <div class="relative">
+                <select class="form-input rounded-md shadow-sm mt-1 block w-full cursor-pointer" wire:model.defer="state.after_last_email_delete">
+                    <option value="redirect_to_homepage">{{ __('Redirect to Homepage') }}</option>
+                    <option value="create_new_email_id">{{ __('Create New Email ID') }}</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                </div>
+            </div>
+            <x-jet-input-error for="state.after_last_email_delete" class="mt-2" />
         </div>
         <div x-data="{ show_advance_random: {{ $state['advance_random'] ? 'true' : 'false' }} }" class="col-span-6 sm:col-span-4">
             <label for="show_advance_random" class="flex items-center cursor-pointer">

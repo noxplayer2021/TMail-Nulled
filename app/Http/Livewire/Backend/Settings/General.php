@@ -27,6 +27,7 @@ class General extends Component {
         'cookie' => [],
         'custom_logo' => '',
         'custom_favicon' => '',
+        'language' => 'en'
     ];
 
     public $logo, $favicon;
@@ -40,6 +41,7 @@ class General extends Component {
         $this->state['homepage'] = config('app.settings.homepage');
         $this->state['colors'] = config('app.settings.colors');
         $this->state['cookie'] = config('app.settings.cookie');
+        $this->state['language'] = config('app.settings.language');
         if (Storage::exists('public/images/custom-logo.png')) {
             $this->state['custom_logo'] = Storage::url('public/images/custom-logo.png');
         }
@@ -69,7 +71,7 @@ class General extends Component {
         if ($this->favicon) {
             $this->favicon->storeAs('public/images', 'custom-favicon.png');
         }
-        $settings = Setting::whereIn('key', ['name', 'homepage', 'colors', 'cookie'])->get();
+        $settings = Setting::whereIn('key', ['name', 'homepage', 'colors', 'cookie', 'language'])->get();
         foreach ($settings as $setting) {
             $setting->value = serialize($this->state[$setting->key]);
             $setting->save();

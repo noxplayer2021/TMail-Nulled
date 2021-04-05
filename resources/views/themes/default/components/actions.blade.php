@@ -14,7 +14,7 @@
             <div class="relative">
                 <x-jet-dropdown width="w-full">
                     <x-slot name="trigger">
-                        <input x-ref="domain" type="text" class="block appearance-none w-full bg-white text-white py-4 px-5 pr-8 bg-opacity-10 rounded-md cursor-pointer focus:outline-none select-none placeholder-white placeholder-opacity-50" placeholder="{{ __('Select Domain') }}" name="domain" id="domain" wire:model="domain" disabled>
+                        <input x-ref="domain" type="text" class="block appearance-none w-full bg-white text-white py-4 px-5 pr-8 bg-opacity-10 rounded-md cursor-pointer focus:outline-none select-none placeholder-white placeholder-opacity-50" placeholder="{{ __('Select Domain') }}" name="domain" id="domain" wire:model="domain" readonly>
                     </x-slot>
                     <x-slot name="content">
                         @foreach($domains as $domain)

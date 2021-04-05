@@ -143,19 +143,10 @@
             }
         }
         function loadEventListeners() {
-            function updateContent() {
+            setInterval(() => {
                 document.querySelector('#content').value = document.querySelector('#quill-content .ql-editor').innerHTML;
                 document.querySelector('#content').dispatchEvent(new Event('input'));
-            }
-            document.querySelector('#quill-content .ql-editor') && document.querySelector('#quill-content .ql-editor').addEventListener('input', function() {
-                updateContent()
-            }, false);
-            document.querySelector('#quill-content .ql-editor') && document.querySelector('#quill-content .ql-editor').addEventListener('paste', function() {
-                updateContent()
-            }, false);
-            document.querySelector('.ql-toolbar') && document.querySelector('.ql-toolbar').addEventListener('click', function() {
-                updateContent()
-            }, false);
+            }, 500);
         }
         if(document.getElementById('quill-content')) {
             loadQuill()
